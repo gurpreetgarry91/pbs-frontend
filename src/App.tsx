@@ -2,14 +2,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router";
 import SignIn from "./pages/AuthPages/SignIn";
 import NotFound from "./pages/OtherPage/NotFound";
 import UserProfiles from "./pages/UserProfiles";
-import Videos from "./pages/UiElements/Videos";
-import Images from "./pages/UiElements/Images";
-import Alerts from "./pages/UiElements/Alerts";
-import Badges from "./pages/UiElements/Badges";
-import Avatars from "./pages/UiElements/Avatars";
-import Buttons from "./pages/UiElements/Buttons";
-import LineChart from "./pages/Charts/LineChart";
-import BarChart from "./pages/Charts/BarChart";
 import Calendar from "./pages/Calendar";
 import BasicTables from "./pages/Tables/BasicTables";
 import FormElements from "./pages/Forms/FormElements";
@@ -44,7 +36,6 @@ export default function App() {
             <Route path="/form-elements" element={<FormElements />} />
 
             {/* Tables */}
-            <Route path="/basic-tables" element={<BasicTables />} />
             <Route path="/dashboard/users" element={<UsersPage />} />
             <Route path="/dashboard/subscriptions" element={<SubscriptionsPage />} />
             <Route path="/dashboard/user-subscriptions" element={<UserSubscriptionsPage />} />
@@ -52,17 +43,6 @@ export default function App() {
             <Route path="/dashboard/user-subscriptions/:id/edit" element={<UserSubscriptionsEdit />} />
             <Route path="/dashboard/calendar-media" element={<CalendarMediaPage />} />
 
-            {/* Ui Elements */}
-            <Route path="/alerts" element={<Alerts />} />
-            <Route path="/avatars" element={<Avatars />} />
-            <Route path="/badge" element={<Badges />} />
-            <Route path="/buttons" element={<Buttons />} />
-            <Route path="/images" element={<Images />} />
-            <Route path="/videos" element={<Videos />} />
-
-            {/* Charts */}
-            <Route path="/line-chart" element={<LineChart />} />
-            <Route path="/bar-chart" element={<BarChart />} />
           </Route>
 
           {/* Auth Layout */}

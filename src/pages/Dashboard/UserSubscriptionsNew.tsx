@@ -86,7 +86,7 @@ export default function UserSubscriptionsNew() {
 
   return (
     <div className="p-6 bg-white rounded shadow ">
-      <h2 className="text-xl font-semibold mb-4">New User Subscription</h2>
+      <h2 className="text-xl font-normal mb-7">New User Subscription</h2>
       <form onSubmit={onSubmit} className="space-y-4">
         <div>
           <label className="block text-sm">User</label>
@@ -104,63 +104,70 @@ export default function UserSubscriptionsNew() {
             ))}
           </select>
         </div>
-        <div>
-          <label className="block text-sm">Subscription Plan</label>
-          <select
-            name="subscription_id"
-            value={form.subscription_id}
-            onChange={onChange}
-            className="w-full border rounded px-3 py-2"
-          >
-            <option value="">Select subscription</option>
-            {subscriptions.map((s) => (
-              <option key={s.id} value={String(s.id)}>
-                {s.subscription_name} ({s.duration} Days)
-              </option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <label className="block text-sm">Start Datetime</label>
-          <input
-            type="datetime-local"
-            name="start_datetime"
-            value={form.start_datetime}
-            onChange={onChange}
-            className="w-full border rounded px-3 py-2"
-          />
-        </div>
-        <div>
-          <label className="block text-sm">End Date</label>
-          <input
-            type="date"
-            name="end_date"
-            value={form.end_date}
-            onChange={onChange}
-            className="w-full border rounded px-3 py-2"
-          />
-        </div>
-        <div>
-          <label className="block text-sm">Payment Method</label>
-          <input
-            name="payment_method"
-            value={form.payment_method}
-            onChange={onChange}
-            className="w-full border rounded px-3 py-2"
-          />
-        </div>
-        <div>
-          <label className="block text-sm">Status</label>
-          <select
-            name="subscription_status"
-            value={form.subscription_status}
-            onChange={onChange}
-            className="w-full border rounded px-3 py-2"
-          >
-            <option value="active">active</option>
-            <option value="cancelled">cancelled</option>
-            <option value="expired">expired</option>
-          </select>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm">Subscription Plan</label>
+            <select
+              name="subscription_id"
+              value={form.subscription_id}
+              onChange={onChange}
+              className="w-full border rounded px-3 py-2"
+            >
+              <option value="">Select subscription</option>
+              {subscriptions.map((s) => (
+                <option key={s.id} value={String(s.id)}>
+                  {s.subscription_name} ({s.duration} Days)
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label className="block text-sm">Start Datetime</label>
+            <input
+              type="datetime-local"
+              name="start_datetime"
+              value={form.start_datetime}
+              onChange={onChange}
+              className="w-full border rounded px-3 py-2"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm">End Date</label>
+            <input
+              type="date"
+              name="end_date"
+              value={form.end_date}
+              onChange={onChange}
+              className="w-full border rounded px-3 py-2"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm">Payment Method</label>
+            <input
+              name="payment_method"
+              value={form.payment_method}
+              onChange={onChange}
+              className="w-full border rounded px-3 py-2"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm">Status</label>
+            <select
+              name="subscription_status"
+              value={form.subscription_status}
+              onChange={onChange}
+              className="w-full border rounded px-3 py-2"
+            >
+              <option value="active">Active</option>
+              <option value="cancelled">Cancelled</option>
+              <option value="expired">Expired</option>
+            </select>
+          </div>
         </div>
 
         <div className="flex gap-2 mt-3 align-right">

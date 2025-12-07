@@ -83,8 +83,8 @@ export default function UsersPage() {
     <div className="p-4">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-semibold">Users</h1>
-          <p className="text-md text-gray-500">Manage application users</p>
+          <h1 className="text-xl font-normal">Users</h1>
+          <p className="text-sm text-gray-500">Manage application users</p>
         </div>
 
         <div className="flex items-center gap-2">
@@ -93,10 +93,10 @@ export default function UsersPage() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search name or email"
-              className="outline-none border text-md bg-white px-3 py-2 rounded w-64"
+              className="outline-none border bg-white px-3 py-2 rounded w-64"
             />
-            <button onClick={handleSearch} className="inline-flex items-center justify-center gap-2 rounded-lg transition  px-4 py-3 text-sm bg-black text-white shadow-theme-xs hover:bg-brand-600 disabled:bg-brand-300 ml-5 text-white text-md px-3 py-1 rounded-md ml-2 text-md text-white px-3 py-1 rounded-md hover:bg-gray-800">Search</button>
-            <button onClick={handleClear} className="ml-2 text-md text-gray-400">Clear</button>
+            <button onClick={handleSearch} className="inline-flex items-center justify-center gap-2 rounded-lg transition  px-4 py-3 text-sm bg-black text-white shadow-theme-xs hover:bg-brand-600 disabled:bg-brand-300 text-white text-md px-3 py-1 rounded-md ml-2 text-md text-white px-3 py-1 rounded-md hover:bg-gray-800">Search</button>
+            <button onClick={handleClear} className="ml-2 px-3 py-1">Clear</button>
           </div>
           <button onClick={openCreate} className="inline-flex items-center justify-center gap-2 rounded-lg transition  px-4 py-3 text-sm bg-brand-500 text-white shadow-theme-xs hover:bg-brand-600 disabled:bg-brand-300 ml-5 text-white text-md px-3 py-1 rounded-md">Add New User</button>
         </div>
@@ -106,10 +106,10 @@ export default function UsersPage() {
         <table className="min-w-full">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-4 py-3 text-left text-xs text-gray-500">User</th>
-              <th className="px-4 py-3 text-left text-xs text-gray-500">Email</th>
-              <th className="px-4 py-3 text-left text-xs text-gray-500">Role</th>
-              <th className="px-4 py-3 text-left text-xs text-gray-500">Active</th>
+              <th className="px-4 py-3 text-left text-xs font-normal text-gray-500">User</th>
+              <th className="px-4 py-3 text-left text-xs font-normal text-gray-500">Email</th>
+              <th className="px-4 py-3 text-left text-xs font-normal text-gray-500">Role</th>
+              <th className="px-4 py-3 text-left text-xs font-normal text-gray-500">Active</th>
               <th className="px-4 py-3" />
             </tr>
           </thead>
@@ -125,10 +125,10 @@ export default function UsersPage() {
             ) : (
               users.map((u) => (
                 <tr key={u.user_id} className="border-b">
-                  <td className="px-4 py-3">{u.user_name}</td>
-                  <td className="px-4 py-3 text-gray-600">{u.email}</td>
-                  <td className="px-4 py-3 text-gray-600">{u.role}</td>
-                  <td className="px-4 py-3">{u.active ? "Yes" : "No"}</td>
+                  <td className="px-4 py-3 font-normal text-sm ">{u.user_name}</td>
+                  <td className="px-4 py-3 font-normal text-sm text-gray-600">{u.email}</td>
+                  <td className="px-4 py-3 font-normal text-sm text-gray-600">{u.role}</td>
+                  <td className="px-4 py-3 font-normal text-sm text-gray-600">{u.active ? "Yes" : "No"}</td>
                   <td className="px-4 py-3 text-right">
                     <button onClick={() => openEdit(u)} className="text-indigo-600 mr-3 text-sm">Edit</button>
                     <button onClick={() => handleDelete(u.user_id)} className="text-red-600 text-sm">Delete</button>
@@ -142,7 +142,7 @@ export default function UsersPage() {
 
       {/* Modal (inline simple) */}
       {showModal && (
-        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-99999">
           <form onSubmit={submitForm} className="bg-white w-full max-w-md p-6 rounded shadow">
             <h3 className="text-lg font-medium mb-4">{editing ? "Edit User" : "Create User"}</h3>
             <div className="space-y-3">

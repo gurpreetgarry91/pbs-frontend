@@ -241,7 +241,7 @@ layer(base);
 }
 
 @utility menu-dropdown-item-inactive {
-  @apply text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-white/5;
+  @apply text-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-300 dark:hover:bg-white/5;
 }
 
 @utility menu-dropdown-badge {
@@ -776,3 +776,59 @@ span.flatpickr-weekday,
 .simplebar-scrollbar.simplebar-visible:before {
   @apply opacity-100;
 }
+
+/* FullCalendar background event opacity override */
+.fc-bg-event, .fc-bg-event-opacity {
+  opacity: 1 !important;
+}
+
+/* Event label styling: right-aligned, black text, bordered label */
+.custom-calendar .fc-event, .custom-calendar .fc-daygrid-event {
+  color: #000 !important;
+}
+.custom-calendar .fc-event .fc-event-title {
+  display: inline-block;
+  text-align: right;
+  color: #000 !important;
+  font-weight: 600;
+  border: 1px solid rgba(0,0,0,0.12);
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.95);
+}
+
+/* Make form labels have consistent spacing across the app */
+form label,
+.form label,
+.form-group label,
+label.text-sm,
+label.font-medium {
+  display: block;
+  margin-bottom: 0.4rem; /* 8px */
+}
+
+/* Inputs, selects and textareas: light grey background in light mode */
+body:not(.dark) input[type="text"],
+body:not(.dark) input[type="password"],
+body:not(.dark) input[type="email"],
+body:not(.dark) input[type="date"],
+body:not(.dark) input[type="datetime-local"],
+body:not(.dark) input[type="number"],
+body:not(.dark) textarea,
+body:not(.dark) select {
+  background-color: var(--color-gray-50) !important;
+}
+
+/* Focus style: make border 1px and grey, remove heavy focus ring */
+input:focus,
+textarea:focus,
+select:focus,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  border-width: 1px !important;
+  border-color: var(--color-gray-300) !important;
+}
+

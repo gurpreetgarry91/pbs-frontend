@@ -74,15 +74,15 @@ export default function SubscriptionsPage() {
     <div className="p-4">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-semibold">Subscriptions</h1>
+          <h1 className="text-xl font-normal">Subscriptions</h1>
           <p className="text-sm text-gray-500">Manage master subscription plans</p>
         </div>
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-2 border rounded-lg px-2 py-1">
             <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search"
               className="outline-none border text-md bg-white px-3 py-2 rounded w-64" />
-            <button onClick={() => fetchSubs(query)} className="inline-flex items-center justify-center gap-2 rounded-lg transition  px-4 py-3 text-sm bg-black text-white shadow-theme-xs hover:bg-brand-600 disabled:bg-brand-300 ml-5 text-white text-md px-3 py-1 rounded-md ml-2 text-md text-white px-3 py-1 rounded-md hover:bg-gray-800">Search</button>
-            <button onClick={() => { setQuery(""); fetchSubs(); }} className="ml-2 text-md text-gray-400">Clear</button>
+            <button onClick={() => fetchSubs(query)} className="inline-flex items-center justify-center gap-2 rounded-lg transition  px-4 py-3 text-sm bg-black text-white shadow-theme-xs hover:bg-brand-600 disabled:bg-brand-300 text-white text-md px-3 py-1 rounded-md ml-2 text-md text-white px-3 py-1 rounded-md hover:bg-gray-800">Search</button>
+            <button onClick={() => { setQuery(""); fetchSubs(); }} className="ml-2 text-md">Clear</button>
           </div>
           <button onClick={openCreate} className="inline-flex items-center justify-center gap-2 rounded-lg transition  px-4 py-3 text-sm bg-brand-500 text-white shadow-theme-xs hover:bg-brand-600 disabled:bg-brand-300 ml-5 text-white text-md px-3 py-1 rounded-md">Add New Subscription</button>
         </div>
@@ -92,10 +92,10 @@ export default function SubscriptionsPage() {
         <table className="min-w-full">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-4 py-3 text-left text-xs text-gray-500">Name</th>
-              <th className="px-4 py-3 text-left text-xs text-gray-500">Price</th>
-              <th className="px-4 py-3 text-left text-xs text-gray-500">Duration</th>
-              <th className="px-4 py-3 text-left text-xs text-gray-500">Active</th>
+              <th className="px-4 py-3 text-left text-xs font-normal text-gray-500">Name</th>
+              <th className="px-4 py-3 text-left text-xs font-normal text-gray-500">Price</th>
+              <th className="px-4 py-3 text-left text-xs font-normal text-gray-500">Duration</th>
+              <th className="px-4 py-3 text-left text-xs font-normal text-gray-500">Active</th>
               <th className="px-4 py-3" />
             </tr>
           </thead>
@@ -107,10 +107,10 @@ export default function SubscriptionsPage() {
             ) : (
               subs.map((s) => (
                 <tr key={s.id} className="border-b">
-                  <td className="px-4 py-3">{s.subscription_name}</td>
-                  <td className="px-4 py-3">Rs. {s.price}</td>
-                  <td className="px-4 py-3">{s.duration}</td>
-                  <td className="px-4 py-3">{s.active ? "Yes" : "No"}</td>
+                  <td className="px-4 font-normal text-sm py-3">{s.subscription_name}</td>
+                  <td className="px-4 font-normal text-sm py-3">Rs. {s.price}</td>
+                  <td className="px-4 font-normal text-sm py-3">{s.duration}</td>
+                  <td className="px-4 font-normal text-sm py-3">{s.active ? "Yes" : "No"}</td>
                   <td className="px-4 py-3 text-right">
                     <button onClick={() => openEdit(s)} className="text-indigo-600 mr-3 text-sm">Edit</button>
                     <button onClick={() => handleDelete(s.id)} className="text-red-600 text-sm">Delete</button>
@@ -123,7 +123,7 @@ export default function SubscriptionsPage() {
       </div>
 
       {showModal && (
-        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+          <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-99999">
           <form onSubmit={submitForm} className="bg-white w-full max-w-md p-6 rounded shadow">
             <h3 className="text-lg font-medium mb-4">{editing ? "Edit Subscription" : "Create Subscription"}</h3>
             <div className="space-y-3">

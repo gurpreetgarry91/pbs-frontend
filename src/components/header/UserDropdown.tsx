@@ -1,10 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { DropdownItem } from "../ui/dropdown/DropdownItem";
 import { Dropdown } from "../ui/dropdown/Dropdown";
-import { Link } from "react-router";
+import { useNavigate } from "react-router";
+import { useAuth } from "../../context/AuthContext";
+import userService, { User } from "../../services/userService";
 
 export default function UserDropdown() {
   const [isOpen, setIsOpen] = useState(false);
+  const { userId, token, logout } = useAuth();
+  const [user, setUser] = useState<User | null>(null);
+  const navigate = useNavigate();
 
   function toggleDropdown() {
     setIsOpen(!isOpen);
@@ -13,6 +18,22 @@ export default function UserDropdown() {
   function closeDropdown() {
     setIsOpen(false);
   }
+
+  useEffect(() => {
+    if (!isOpen || !userId) return;
+    let mounted = true;
+    (async () => {
+      try {
+        const u = await userService.getUser(Number(userId), token ?? null);
+        if (mounted) setUser(u);
+      } catch (err) {
+        console.error("Failed to fetch current user", err);
+      }
+    })();
+    return () => {
+      mounted = false;
+    };
+  }, [isOpen, userId, token]);
   return (
     <div className="relative">
       <button
@@ -23,7 +44,7 @@ export default function UserDropdown() {
           <img src="/images/user/owner.jpg" alt="User" />
         </span>
 
-        <span className="block mr-1 font-medium text-theme-sm">Gurpreet</span>
+        <span className="block mr-1 font-medium text-theme-sm">{user?.user_name ?? "User Name"}</span>
         <svg
           className={`stroke-gray-500 dark:stroke-gray-400 transition-transform duration-200 ${
             isOpen ? "rotate-180" : ""
@@ -47,18 +68,26 @@ export default function UserDropdown() {
       <Dropdown
         isOpen={isOpen}
         onClose={closeDropdown}
-        className="absolute right-0 mt-[17px] flex w-[260px] flex-col rounded-2xl border border-gray-200 bg-white p-3 shadow-theme-lg dark:border-gray-800 dark:bg-gray-dark"
+        className="absolute right-0 mt-[17px] flex w-[200px] flex-col rounded-2xl border border-gray-200 bg-white p-3 shadow-theme-lg dark:border-gray-800 dark:bg-gray-dark"
       >
         <div>
           <span className="block font-medium text-gray-700 text-theme-sm dark:text-gray-400">
-            Gurpreet Singh
+            {user?.user_name ?? "User Name"}
           </span>
           <span className="mt-0.5 block text-theme-xs text-gray-500 dark:text-gray-400">
-            gurpreet@mywebsite.com
+            {user?.email ?? "user@mywebsite.com"}
           </span>
         </div>
-        <Link
-          to="/signin"
+        <button
+          type="button"
+          onClick={() => {
+            try {
+              logout();
+            } finally {
+              closeDropdown();
+              navigate("/signin");
+            }
+          }}
           className="flex items-center gap-3 px-3 py-2 mt-3 font-medium text-gray-700 rounded-lg group text-theme-sm hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
         >
           <svg
@@ -77,7 +106,7 @@ export default function UserDropdown() {
             />
           </svg>
           Sign out
-        </Link>
+        </button>
       </Dropdown>
     </div>
   );

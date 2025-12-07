@@ -91,13 +91,13 @@ export default function UserSubscriptionsPage() {
     <div className="p-4">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-semibold">User Subscriptions</h1>
+          <h1 className="text-xl font-normal">User Subscriptions</h1>
           <p className="text-sm text-gray-500">List of user subscriptions</p>
         </div>
         <div className="flex items-center gap-2">
             <div className="flex items-center gap-2 border rounded-lg px-2 py-1">
-          <input className="border rounded px-3 py-2" placeholder="search" value={query} onChange={(e)=>setQuery(e.target.value)} />
-          <button onClick={()=>fetchItems(query)} className="inline-flex items-center justify-center gap-2 rounded-lg transition  px-4 py-3 text-sm bg-black text-white shadow-theme-xs hover:bg-brand-600 disabled:bg-brand-300 ml-5 text-white text-md px-3 py-1 rounded-md ml-2 text-md text-white px-3 py-1 rounded-md hover:bg-gray-800">Search</button>
+          <input className="border rounded px-3 py-2 bg-white" placeholder="Search" value={query} onChange={(e)=>setQuery(e.target.value)} />
+          <button onClick={()=>fetchItems(query)} className="inline-flex items-center justify-center gap-2 rounded-lg transition  px-4 py-3 text-sm bg-black text-white shadow-theme-xs hover:bg-brand-600 disabled:bg-brand-300 text-white text-md px-3 py-1 rounded-md ml-2 text-md text-white px-3 py-1 rounded-md hover:bg-gray-800">Search</button>
           <button onClick={()=>{ setQuery(""); fetchItems(); }} className="ml-2 px-3 py-1">Clear</button>
           </div>
           <button onClick={()=>navigate('/dashboard/user-subscriptions/new')} className="inline-flex items-center justify-center gap-2 rounded-lg transition  px-4 py-3 text-sm bg-brand-500 text-white shadow-theme-xs hover:bg-brand-600 disabled:bg-brand-300 ml-5 text-white text-md px-3 py-1 rounded-md">New User Subscription</button>
@@ -108,12 +108,12 @@ export default function UserSubscriptionsPage() {
         <table className="min-w-full">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-4 py-3 text-left text-xs text-gray-500">ID</th>
-              <th className="px-4 py-3 text-left text-xs text-gray-500">User</th>
-              <th className="px-4 py-3 text-left text-xs text-gray-500">Subscription</th>
-              <th className="px-4 py-3 text-left text-xs text-gray-500">Start</th>
-              <th className="px-4 py-3 text-left text-xs text-gray-500">End</th>
-              <th className="px-4 py-3 text-left text-xs text-gray-500">Status</th>
+              <th className="px-4 py-3 text-left text-xs font-normal text-gray-500">ID</th>
+              <th className="px-4 py-3 text-left text-xs font-normal text-gray-500">User</th>
+              <th className="px-4 py-3 text-left text-xs font-normal text-gray-500">Subscription</th>
+              <th className="px-4 py-3 text-left text-xs font-normal text-gray-500">Start</th>
+              <th className="px-4 py-3 text-left text-xs font-normal text-gray-500">End</th>
+              <th className="px-4 py-3 text-left text-xs font-normal text-gray-500">Status</th>
               <th className="px-4 py-3" />
             </tr>
           </thead>
@@ -125,12 +125,12 @@ export default function UserSubscriptionsPage() {
             ) : (
               items.map(i => (
                 <tr key={i.id} className="border-b">
-                  <td className="px-4 py-3">{i.id}</td>
-                  <td className="px-4 py-3">{getUserLabel(i.user_id)}</td>
-                  <td className="px-4 py-3">{getSubscriptionLabel(i.subscription_id)}</td>
-                  <td className="px-4 py-3">{formatDisplayDateTime(i.start_datetime)}</td>
-                  <td className="px-4 py-3">{formatDisplayDate(i.end_date)}</td>
-                  <td className="px-4 py-3">{i.subscription_status}</td>
+                  <td className="px-4 font-normal text-sm py-3">{i.id}</td>
+                  <td className="px-4 font-normal text-sm py-3">{getUserLabel(i.user_id)}</td>
+                  <td className="px-4 font-normal text-sm py-3">{getSubscriptionLabel(i.subscription_id)}</td>
+                  <td className="px-4 font-normal text-sm py-3">{formatDisplayDateTime(i.start_datetime)}</td>
+                  <td className="px-4 font-normal text-sm py-3">{formatDisplayDate(i.end_date)}</td>
+                  <td className="px-4 font-normal text-sm py-3">{i.subscription_status}</td>
                   <td className="px-4 py-3 text-right">
                     <button onClick={()=>navigate(`/dashboard/user-subscriptions/${i.id}/edit`)} className="text-indigo-600 mr-3">Edit</button>
                   </td>
