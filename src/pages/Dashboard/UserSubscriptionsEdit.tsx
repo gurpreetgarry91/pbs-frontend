@@ -92,19 +92,6 @@ export default function UserSubscriptionsEdit() {
 
   if (loading) return <div className="p-4">Loading...</div>;
 
-  function formatDMY(d?: string) {
-    if (!d) return "";
-    try {
-      const dt = new Date(d);
-      const dd = String(dt.getDate()).padStart(2, "0");
-      const mm = String(dt.getMonth() + 1).padStart(2, "0");
-      const yyyy = dt.getFullYear();
-      return `${dd}/${mm}/${yyyy}`;
-    } catch (e) {
-      return d;
-    }
-  }
-
   return (
     <div className="p-6 bg-white rounded shadow">
       <h2 className="text-xl font-semibold mb-4">Edit User Subscription</h2>

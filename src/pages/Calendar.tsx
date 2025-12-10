@@ -7,9 +7,6 @@ import { EventInput, DateSelectArg, EventClickArg } from "@fullcalendar/core";
 import { Modal } from "../components/ui/modal";
 import { useModal } from "../hooks/useModal";
 import CalendarMediaModal from "../components/calendar/CalendarMediaModal";
-import { useAuth } from "../context/AuthContext";
-import PageMeta from "../components/common/PageMeta";
-
 interface CalendarEvent extends EventInput {
   extendedProps: {
     calendar: string;
@@ -29,7 +26,6 @@ const Calendar: React.FC = () => {
   const { isOpen, openModal, closeModal } = useModal();
   const [isMediaOpen, setIsMediaOpen] = useState(false);
   const [mediaDate, setMediaDate] = useState<string | null>(null);
-  const { token } = useAuth();
 
   const calendarsEvents = {
     Danger: "danger",

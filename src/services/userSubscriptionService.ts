@@ -14,41 +14,46 @@ export interface UserSubscription {
   updated_at?: string;
 }
 
-function authHeader(token?: string | null) {
+function authHeader(token?: string | null): HeadersInit {
   return token ? { Authorization: `Bearer ${token}` } : {};
 }
 
 const listUserSubscriptions = async (token?: string | null, q?: string | null): Promise<UserSubscription[]> => {
   const url = q ? `${ENDPOINTS.SUBSCRIPTIONS.replace('/subscriptions','/user-subscriptions')}?q=${encodeURIComponent(q)}` : ENDPOINTS.SUBSCRIPTIONS.replace('/subscriptions','/user-subscriptions');
-  const res = await fetch(url, { method: 'GET', headers: { 'Content-Type': 'application/json', ...authHeader(token) } });
+  const headers: HeadersInit = { 'Content-Type': 'application/json', ...authHeader(token) };
+  const res = await fetch(url, { method: 'GET', headers });
   if (!res.ok) throw new Error(`Failed to fetch user subscriptions: ${res.status}`);
   return res.json();
 };
 
 const getUserSubscription = async (id: number, token?: string | null) => {
   const url = ENDPOINTS.SUBSCRIPTIONS.replace('/subscriptions',`/user-subscriptions/${id}`);
-  const res = await fetch(url, { method: 'GET', headers: { 'Content-Type': 'application/json', ...authHeader(token) } });
+  const headers2: HeadersInit = { 'Content-Type': 'application/json', ...authHeader(token) };
+  const res = await fetch(url, { method: 'GET', headers: headers2 });
   if (!res.ok) throw new Error(`Failed to get user subscription: ${res.status}`);
   return res.json();
 };
 
 const createUserSubscription = async (payload: Partial<UserSubscription>, token?: string | null) => {
   const url = ENDPOINTS.SUBSCRIPTIONS.replace('/subscriptions','/user-subscriptions');
-  const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json', ...authHeader(token) }, body: JSON.stringify(payload) });
+  const headers3: HeadersInit = { 'Content-Type': 'application/json', ...authHeader(token) };
+  const res = await fetch(url, { method: 'POST', headers: headers3, body: JSON.stringify(payload) });
   if (!res.ok) throw new Error(`Failed to create user subscription: ${res.status}`);
   return res.json();
 };
 
 const updateUserSubscription = async (id: number, payload: Partial<UserSubscription>, token?: string | null) => {
   const url = ENDPOINTS.SUBSCRIPTIONS.replace('/subscriptions',`/user-subscriptions/${id}`);
-  const res = await fetch(url, { method: 'PUT', headers: { 'Content-Type': 'application/json', ...authHeader(token) }, body: JSON.stringify(payload) });
+  const headers4: HeadersInit = { 'Content-Type': 'application/json', ...authHeader(token) };
+  const res = await fetch(url, { method: 'PUT', headers: headers4, body: JSON.stringify(payload) });
   if (!res.ok) throw new Error(`Failed to update user subscription: ${res.status}`);
   return res.json();
 };
 
 const deleteUserSubscription = async (id: number, token?: string | null) => {
   const url = ENDPOINTS.SUBSCRIPTIONS.replace('/subscriptions',`/user-subscriptions/${id}`);
-  const res = await fetch(url, { method: 'DELETE', headers: { 'Content-Type': 'application/json', ...authHeader(token) } });
+  const headers5: HeadersInit = { 'Content-Type': 'application/json', ...authHeader(token) };
+  const res = await fetch(url, { method: 'DELETE', headers: headers5 });
   if (!res.ok) throw new Error(`Failed to delete user subscription: ${res.status}`);
   return res.json();
 };

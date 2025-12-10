@@ -3,7 +3,6 @@ import SignIn from "./pages/AuthPages/SignIn";
 import NotFound from "./pages/OtherPage/NotFound";
 import UserProfiles from "./pages/UserProfiles";
 import Calendar from "./pages/Calendar";
-import BasicTables from "./pages/Tables/BasicTables";
 import FormElements from "./pages/Forms/FormElements";
 import Blank from "./pages/Blank";
 import AppLayout from "./layout/AppLayout";
@@ -16,6 +15,7 @@ import UserSubscriptionsPage from "./pages/Dashboard/UserSubscriptions";
 import UserSubscriptionsNew from "./pages/Dashboard/UserSubscriptionsNew";
 import UserSubscriptionsEdit from "./pages/Dashboard/UserSubscriptionsEdit";
 import CalendarMediaPage from "./pages/CalendarMediaPage";
+import AdvertisementsPage from "./pages/Dashboard/Advertisements";
 
 export default function App() {
   return (
@@ -42,6 +42,7 @@ export default function App() {
             <Route path="/dashboard/user-subscriptions/new" element={<UserSubscriptionsNew />} />
             <Route path="/dashboard/user-subscriptions/:id/edit" element={<UserSubscriptionsEdit />} />
             <Route path="/dashboard/calendar-media" element={<CalendarMediaPage />} />
+            <Route path="/dashboard/advertisements" element={<AdvertisementsPage />} />
 
           </Route>
 
