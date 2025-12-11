@@ -8,7 +8,7 @@ const AdvertisementsPage: React.FC = () => {
   const [files, setFiles] = useState<File[]>([]);
   const [loading, setLoading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
-  const API_BASE_URL = "http://127.0.0.1:8000";
+  const API_BASE_URL = "https://api.pbsmedia.com";
 
   const fetchAds = async () => {
     try {

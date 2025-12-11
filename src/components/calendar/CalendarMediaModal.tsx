@@ -19,7 +19,7 @@ export default function CalendarMediaModal({ isOpen, onClose, date, selectedUser
   const [media, setMedia] = useState<MediaItem[]>([]);
   const [files, setFiles] = useState<File[]>([]);
   const [loading, setLoading] = useState(false);
-  const API_BASE_URL = "http://127.0.0.1:8000";
+  const API_BASE_URL = "https://api.pbsmedia.com";
 
   const fmtDate = (iso?: string) => {
     if (!iso) return "";
